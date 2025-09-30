@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TTbooster — Croissance Réseaux</title>
+  <meta name="description" content="Panel de promotion réseaux sociaux (Instagram, TikTok, Facebook, YouTube). Campagnes éthiques: publicité, influence, optimisation." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{--grad:linear-gradient(135deg,#16a34a,#22c55e);}  
+    html,body{font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif}
+    .glass{background: rgba(255,255,255,.75); backdrop-filter: blur(10px)}
+    .brand-grad{background-image:var(--grad)}
+    .text-grad{background-image:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent}
+    .shadow-soft{box-shadow: 0 10px 30px rgba(2,6,23,.08)}
+  </style>
+</head>
+<body class="bg-gradient-to-br from-sky-50 via-white to-indigo-50 text-slate-900">
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-30 glass border-b">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-2 font-extrabold text-lg">
+  <svg width="28" height="28" viewBox="0 0 48 48" class="rounded-xl shadow-soft" aria-hidden="true">
+    <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#16a34a"/><stop offset="100%" stop-color="#22c55e"/></linearGradient></defs>
+    <rect rx="10" ry="10" width="48" height="48" fill="url(#g)"/>
+    <path d="M14 30c6-10 12-10 18 0 2 3 1 5-2 4l-3-1-4 3-4-3-3 1c-3 1-4-1-2-4z" fill="#fff" opacity=".9"/>
+    <text x="24" y="22" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">TT</text>
+  </svg>
+  TTbooster <span class="hidden md:inline">Panel</span>
+</a>
+      <nav class="hidden md:flex gap-6 text-sm">
+        <a href="#order" class="hover:text-indigo-600">Commander</a>
+        <a href="#services" class="hover:text-indigo-600">Services</a>
+        <a href="#pricing" class="hover:text-indigo-600">Tarifs</a>
+        <a href="#faq" class="hover:text-indigo-600">FAQ</a>
+        <a href="#contact" class="hover:text-indigo-600">Contact</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <div id="balanceBadge" class="hidden md:inline-flex items-center gap-2 text-sm px-3 py-1.5 rounded-lg bg-green-100 text-green-800 border border-green-300">Solde: <strong id="balanceAmount">0 FCFA</strong></div>
+        <button onclick="openTopupModal()" class="px-3 py-2 rounded-lg text-white brand-grad">Recharger</button>
+        <button onclick="openModal('loginModal')" class="px-3 py-2 rounded-lg border hover:border-green-600 hover:text-green-700">Se connecter</button>
+        <button onclick="openModal('signupModal')" class="px-3 py-2 rounded-lg text-white brand-grad">Créer un compte</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO + ORDER CARD -->
+  <section class="py-12 md:py-16" id="order">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-8 items-center">
+      <div>
+        <div class="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1 rounded-full bg-white/70 border shadow-soft">Croissance 100% conforme • Zéro faux abonnés • Ciblage CMR</div>
+        <h1 class="mt-4 text-3xl md:text-5xl font-black leading-tight">Un <span class="text-grad">panel simple</span> pour booster vos réseaux sans risque</h1>
+        <p class="mt-4 text-slate-600">Passez des campagnes d'acquisition (pub, influence, optimisation) sur Instagram, TikTok, Facebook & YouTube. Nous ne vendons pas de faux abonnés : uniquement des méthodes conformes aux politiques plateformes.</p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="#services" class="px-5 py-3 rounded-lg text-white brand-grad shadow-soft">Voir les services</a>
+          <a href="#faq" class="px-5 py-3 rounded-lg border">En savoir plus</a>
+        </div>
+        <div class="mt-6 text-xs text-slate-500"><span class="text-green-700 font-medium">Paiements :</span> <span class="inline-flex items-center gap-2 text-green-700"><span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-green-100">💳 Visa</span><span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-green-100">💳 Mastercard</span><span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-green-100">📱 MTN MoMo</span><span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-green-100">📱 Orange Money</span></span>.</div>
+      </div>
+
+      <!-- ORDER CARD -->
+      <div class="glass rounded-2xl shadow-soft border">
+        <div class="p-5 border-b">
+          <h3 class="font-bold text-lg">Passer une commande</h3>
+          <p class="text-sm text-slate-600">Votre solde sera débité automatiquement après confirmation.</p>
+        </div>
+        <form onsubmit="return submitOrder(event)" class="p-5 space-y-4" onsubmit="event.preventDefault(); alert('Commande simulée — connectez-vous pour finaliser.');">
+          <div>
+            <label class="text-sm font-medium">Plateforme</label>
+            <select id="platform" class="mt-1 w-full border rounded-lg p-2.5" onchange="syncServices()">
+              <option value="instagram">Instagram</option>
+              <option value="tiktok">TikTok</option>
+              <option value="facebook">Facebook</option>
+              <option value="youtube">YouTube</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-sm font-medium">Service</label>
+            <select id="service" class="mt-1 w-full border rounded-lg p-2.5" onchange="updatePrice()"></select>
+          </div>
+          <div>
+            <label class="text-sm font-medium">Lien du contenu / profil</label>
+            <input id="link" type="url" placeholder="https://..." class="mt-1 w-full border rounded-lg p-2.5" required />
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="text-sm font-medium">Quantité</label>
+              <input id="quantity" type="number" min="50" step="50" value="100" class="mt-1 w-full border rounded-lg p-2.5" oninput="updatePrice()" />
+              <p id="qtyhint" class="text-[11px] mt-1 text-slate-500">Min – Max: —</p>
+            </div>
+            <div>
+              <label class="text-sm font-medium">Prix estimé</label>
+              <input id="price" type="text" class="mt-1 w-full border rounded-lg p-2.5 bg-slate-50" readonly />
+              <p class="text-[11px] mt-1 text-slate-500">Tarif indicatif. Hors budget pub le cas échéant.</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+  <button type="submit" class="w-full px-4 py-3 rounded-lg text-white brand-grad">Valider la commande</button>
+  <button type="button" onclick="openTopupModal()" class="w-full px-4 py-3 rounded-lg border">Recharger le solde</button>
+</div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES TABLE -->
+  <section id="services" class="py-12 md:py-16 border-t bg-white/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-8 text-center">
+        <h2 class="text-2xl md:text-4xl font-extrabold">Catalogue de services</h2>
+        <p class="text-slate-600 mt-2">Exécution rapide, suivi en temps réel, assistance WhatsApp.</p>
+      </div>
+      <div class="overflow-x-auto bg-white rounded-2xl border shadow-soft">
+        <table class="min-w-full text-sm">
+          <thead class="bg-slate-50">
+            <tr>
+              <th class="text-left p-3">Plateforme</th>
+              <th class="text-left p-3">Service</th>
+              <th class="text-left p-3">Min–Max</th>
+              <th class="text-left p-3">Tarif / 1000</th>
+              <th class="text-left p-3">Vitesse</th>
+              <th class="text-left p-3">Qualité</th>
+            </tr>
+          </thead>
+          <tbody id="servicetable"></tbody>
+        </table>
+      </div>
+      <p class="text-xs text-slate-500 mt-3">* Tous les services sont opérés via des méthodes conformes (publicités officielles, placements influenceurs, optimisation). Aucun bot, aucun faux compte.</p>
+    </div>
+  </section>
+
+  <!-- PRICING CARDS -->
+  <section id="pricing" class="py-12 md:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10">
+        <h2 class="text-2xl md:text-4xl font-extrabold">Formules mensuelles</h2>
+        <p class="text-slate-600 mt-2">Choisissez un pack, ajustez selon votre niche.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-2xl border shadow-soft p-6">
+          <h3 class="font-bold text-lg">Starter</h3>
+          <div class="text-2xl font-extrabold mt-2">25 000 FCFA<span class="text-sm font-medium text-slate-500">/mois</span></div>
+          <ul class="mt-4 space-y-2 text-sm text-slate-600">
+            <li>✔ Audit rapide</li>
+            <li>✔ 15 contenus / mois (templates)</li>
+            <li>✔ Hashtags & conseils</li>
+          </ul>
+          <button onclick="scrollToOrder()" class="mt-6 w-full px-4 py-2 rounded-lg border">Choisir</button>
+        </div>
+        <div class="bg-white rounded-2xl border-2 border-indigo-500 shadow-soft p-6 scale-[1.02]">
+          <div class="text-xs font-bold text-indigo-600">POPULAIRE</div>
+          <h3 class="font-bold text-lg">Croissance</h3>
+          <div class="text-2xl font-extrabold mt-1">60 000 FCFA<span class="text-sm font-medium text-slate-500">/mois</span></div>
+          <ul class="mt-4 space-y-2 text-sm text-slate-600">
+            <li>✔ Audit + plan 30j</li>
+            <li>✔ 20–25 contenus / mois</li>
+            <li>✔ Gestion & reporting</li>
+            <li>✔ 1 campagne pub incluse</li>
+          </ul>
+          <button onclick="scrollToOrder()" class="mt-6 w-full px-4 py-2 rounded-lg text-white brand-grad">Choisir</button>
+        </div>
+        <div class="bg-white rounded-2xl border shadow-soft p-6">
+          <h3 class="font-bold text-lg">Accélération</h3>
+          <div class="text-2xl font-extrabold mt-2">120 000 FCFA<span class="text-sm font-medium text-slate-500">/mois</span></div>
+          <ul class="mt-4 space-y-2 text-sm text-slate-600">
+            <li>✔ Gestion complète</li>
+            <li>✔ 30–40 contenus / mois</li>
+            <li>✔ 3 campagnes pub actives</li>
+          </ul>
+          <button onclick="scrollToOrder()" class="mt-6 w-full px-4 py-2 rounded-lg border">Choisir</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="py-12 md:py-16 border-t bg-white/70">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-4 gap-6">
+      <div class="col-span-1 md:col-span-4 text-center mb-4">
+        <h3 class="text-xl md:text-3xl font-extrabold">Comment ça marche</h3>
+      </div>
+      <div class="bg-white rounded-2xl border p-6 shadow-soft">
+        <div class="w-8 h-8 rounded-lg text-white brand-grad flex items-center justify-center font-extrabold">1</div>
+        <div class="mt-3 font-semibold">Choisissez un service</div>
+        <p class="text-sm text-slate-600">Sélectionnez la plateforme, le type de campagne et la quantité.</p>
+      </div>
+      <div class="bg-white rounded-2xl border p-6 shadow-soft">
+        <div class="w-8 h-8 rounded-lg text-white brand-grad flex items-center justify-center font-extrabold">2</div>
+        <div class="mt-3 font-semibold">Passez la commande</div>
+        <p class="text-sm text-slate-600">Renseignez le lien et réglez par MoMo, OM ou carte bancaire.</p>
+      </div>
+      <div class="bg-white rounded-2xl border p-6 shadow-soft">
+        <div class="w-8 h-8 rounded-lg text-white brand-grad flex items-center justify-center font-extrabold">3</div>
+        <div class="mt-3 font-semibold">Exécution & suivi</div>
+        <p class="text-sm text-slate-600">Nous lançons la campagne et vous suivez le statut en temps réel.</p>
+      </div>
+      <div class="bg-white rounded-2xl border p-6 shadow-soft">
+        <div class="w-8 h-8 rounded-lg text-white brand-grad flex items-center justify-center font-extrabold">4</div>
+        <div class="mt-3 font-semibold">Rapport & optimisation</div>
+        <p class="text-sm text-slate-600">Chaque semaine : résultats, recommandations et améliorations.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="py-12 md:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h3 class="text-2xl md:text-3xl font-extrabold text-center">FAQ</h3>
+      <div class="mt-8 space-y-4">
+        <details class="bg-white rounded-xl border p-4 shadow-soft">
+          <summary class="font-semibold cursor-pointer">Vendez-vous des faux abonnés ?</summary>
+          <p class="mt-2 text-sm text-slate-600">Non. Nous opérons uniquement des campagnes conformes (publicité officielle, influence, optimisation). Les résultats sont réels et durables.</p>
+        </details>
+        <details class="bg-white rounded-xl border p-4 shadow-soft">
+          <summary class="font-semibold cursor-pointer">Quel budget prévoir ?</summary>
+          <p class="mt-2 text-sm text-slate-600">Selon la niche et l’objectif. Les services listés indiquent un tarif unitaire. Pour la publicité, prévoyez un budget média séparé (à partir de 20 000–100 000 FCFA/mois).</p>
+        </details>
+        <details class="bg-white rounded-xl border p-4 shadow-soft">
+          <summary class="font-semibold cursor-pointer">Délais & garanties ?</summary>
+          <p class="mt-2 text-sm text-slate-600">Le délai dépend de la demande et des plateformes. Pour les campagnes publicitaires, les résultats commencent souvent sous 72h. Nous privilégions la qualité à la vitesse.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-12 md:py-16 border-t bg-white/60">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-8 items-center">
+      <div>
+        <h3 class="text-xl md:text-3xl font-extrabold">Parlons de vos objectifs</h3>
+        <p class="mt-2 text-slate-600">WhatsApp : <a href="https://wa.me/237682022279" target="_blank" rel="noreferrer" class="font-bold text-indigo-600">+237 682 02 22 79</a><br/>Email : <a href="mailto:feussihenry7@gmail.com" class="font-bold text-indigo-600">feussihenry7@gmail.com</a></p>
+        <p class="mt-2 text-xs text-slate-500">Horaires : 9h–19h (UTC+1) — Douala, Cameroun</p>
+      </div>
+      <form class="bg-white rounded-2xl border shadow-soft p-6 space-y-4" onsubmit="event.preventDefault(); alert('Merci ! Nous vous répondrons rapidement.');">
+        <div class="grid grid-cols-2 gap-4">
+          <input type="text" placeholder="Nom" class="border rounded-lg p-2.5" required>
+          <input type="tel" placeholder="Téléphone (WhatsApp)" class="border rounded-lg p-2.5">
+        </div>
+        <input type="email" placeholder="Email" class="border rounded-lg p-2.5">
+        <textarea rows="4" placeholder="Votre niche, vos objectifs, budget pub" class="border rounded-lg p-2.5"></textarea>
+        <button class="w-full px-4 py-3 rounded-lg text-white brand-grad">Envoyer</button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="py-10 border-t">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-slate-500 flex flex-col md:flex-row items-center justify-between gap-3">
+      <div>© <span id="year"></span> TTbooster — Croissance authentique.</div>
+      <div class="flex items-center gap-3">
+        <a href="#" class="hover:text-indigo-600">Conditions</a>
+        <span>•</span>
+        <a href="#" class="hover:text-indigo-600">Confidentialité</a>
+        <span>•</span>
+        <a href="#faq" class="hover:text-indigo-600">FAQ</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- TOPUP MODAL -->
+  <div id="topupModal" class="fixed inset-0 hidden items-center justify-center bg-black/40 p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 space-y-4 shadow-soft">
+      <div class="flex items-center justify-between">
+        <h4 class="font-bold text-lg">Recharger le solde</h4>
+        <button onclick="closeModal('topupModal')" class="text-slate-500">✕</button>
+      </div>
+      <div class="space-y-2">
+        <label class="text-sm font-medium">Montant (FCFA)</label>
+        <input id="topupAmount" type="number" min="500" step="100" value="2000" class="border rounded-lg p-2.5 w-full" />
+      </div>
+      <button class="w-full px-4 py-3 rounded-lg text-white brand-grad" onclick="requestTopup()">Procéder au paiement</button>
+      <p class="text-xs text-slate-500">Paiements: Visa, Mastercard, MTN MoMo, Orange Money (CMR)</p>
+    </div>
+  </div>
+
+  <!-- AUTH MODALS (static, demo) -->
+  <div id="loginModal" class="fixed inset-0 hidden items-center justify-center bg-black/40 p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 space-y-4 shadow-soft">
+      <div class="flex items-center justify-between">
+        <h4 class="font-bold text-lg">Connexion</h4>
+        <button onclick="closeModal('loginModal')" class="text-slate-500">✕</button>
+      </div>
+      <input type="email" placeholder="Email" class="border rounded-lg p-2.5 w-full" />
+      <input type="password" placeholder="Mot de passe" class="border rounded-lg p-2.5 w-full" />
+      <button class="w-full px-4 py-3 rounded-lg text-white brand-grad" onclick="alert('Démo : pas de backend encore')">Se connecter</button>
+      <p class="text-xs text-slate-500 text-center">Pas de compte ? <a href="#" class="text-indigo-600" onclick="switchModal('loginModal','signupModal')">Créer un compte</a></p>
+    </div>
+  </div>
+  <div id="signupModal" class="fixed inset-0 hidden items-center justify-center bg-black/40 p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 space-y-4 shadow-soft">
+      <div class="flex items-center justify-between">
+        <h4 class="font-bold text-lg">Créer un compte</h4>
+        <button onclick="closeModal('signupModal')" class="text-slate-500">✕</button>
+      </div>
+      <input id="su_name" type="text" placeholder="Nom" class="border rounded-lg p-2.5 w-full" />
+      <input id="su_email" type="email" placeholder="Email" class="border rounded-lg p-2.5 w-full" />
+      <input id="su_phone" type="tel" placeholder="Téléphone (WhatsApp)" class="border rounded-lg p-2.5 w-full" />
+      <button class="w-full px-4 py-3 rounded-lg text-white brand-grad" onclick="signupLocal()">Créer mon compte</button>
+      <p class="text-xs text-slate-500 text-center">Déjà inscrit ? <a href="#" class="text-green-700" onclick="switchModal('signupModal','loginModal')">Se connecter</a></p>
+    </div>
+  </div>
+
+  <script>
+    // year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // simple modal logic
+    function openModal(id){const el=document.getElementById(id); el.classList.remove('hidden'); el.classList.add('flex')}
+    function closeModal(id){const el=document.getElementById(id); el.classList.add('hidden'); el.classList.remove('flex')}
+    function switchModal(a,b){closeModal(a); openModal(b)}
+
+    // Catalog & pricing (per 1000 units)
+    const CATALOG = {
+      instagram: [
+        { key:'ig_views', name:'Vues vidéo (campagne pub)', min:250, max:100000, rate:500, speed:'Rapide', quality:'Réelles' },
+        { key:'ig_likes', name:'Interactions (campagne pub)', min:250, max:50000, rate:500, speed:'Moyenne', quality:'Ciblées' },
+        { key:'ig_follow', name:'Acquisition abonnés (ads + influence)', min:250, max:50000, rate:500, speed:'Progressive', quality:'Niche' },
+      ],
+      tiktok: [
+        { key:'tt_views', name:'Vues vidéo (campagne pub)', min:250, max:200000, rate:500, speed:'Rapide', quality:'Réelles' },
+        { key:'tt_follow', name:'Acquisition abonnés (influence)', min:250, max:50000, rate:500, speed:'Moyenne', quality:'Niche' },
+      ],
+      facebook: [
+        { key:'fb_page_like', name:'Likes page (ads)', min:250, max:50000, rate:500, speed:'Moyenne', quality:'Géo CMR' },
+        { key:'fb_views', name:'Vues vidéo (ads)', min:250, max:300000, rate:500, speed:'Rapide', quality:'Réelles' },
+      ],
+      youtube: [
+        { key:'yt_views', name:'Vues (ads)', min:250, max:300000, rate:500, speed:'Rapide', quality:'Réelles' },
+        { key:'yt_sub', name:'Abonnés (promotion externe)', min:250, max:20000, rate:500, speed:'Progressive', quality:'Niche' },
+      ],
+    };
+
+    function money(x){return new Intl.NumberFormat('fr-FR').format(Math.round(x)) + ' FCFA'}
+
+    function syncServices(){
+      const platform = document.getElementById('platform').value;
+      const list = CATALOG[platform] || [];
+      const sel = document.getElementById('service');
+      sel.innerHTML = '';
+      list.forEach(s=>{
+        const opt=document.createElement('option');
+        opt.value=s.key; opt.textContent=s.name; sel.appendChild(opt);
+      });
+      updatePrice();
+      // table refresh
+      renderTable();
+    }
+
+    function getSelectedService(){
+      const platform = document.getElementById('platform').value;
+      const key = document.getElementById('service').value;
+      return (CATALOG[platform]||[]).find(s=>s.key===key) || (CATALOG[platform]||[])[0];
+    }
+
+    function updatePrice(){
+      const s = getSelectedService();
+      if(!s) return;
+      const qtyEl = document.getElementById('quantity');
+      const q = Math.max(s.min, Math.min(Number(qtyEl.value||0), s.max));
+      qtyEl.value = q;
+      document.getElementById('qtyhint').textContent = `Min – Max: ${s.min} – ${s.max}`;
+      const price = (q/1000) * s.rate;
+      document.getElementById('price').value = money(price);
+    }
+
+    function renderTable(){
+      const tbody = document.getElementById('servicetable');
+      tbody.innerHTML='';
+      Object.entries(CATALOG).forEach(([plat, arr])=>{
+        arr.forEach(s=>{
+          const tr=document.createElement('tr');
+          tr.innerHTML = `
+            <td class="p-3 font-medium">${plat.charAt(0).toUpperCase()+plat.slice(1)}</td>
+            <td class="p-3">${s.name}</td>
+            <td class="p-3">${s.min}–${s.max}</td>
+            <td class="p-3">${money(s.rate)}</td>
+            <td class="p-3">${s.speed}</td>
+            <td class="p-3">${s.quality}</td>`;
+          tbody.appendChild(tr);
+        })
+      })
+    }
+
+    function scrollToOrder(){document.getElementById('order').scrollIntoView({behavior:'smooth'})}
+
+    // init
+    syncServices();
+    hydrateUser();
+    refreshBalance();
+
+    // --- Auth (simplifiée v1) ---
+    function signupLocal(){
+      const name=document.getElementById('su_name').value?.trim();
+      const email=document.getElementById('su_email').value?.trim();
+      const phone=document.getElementById('su_phone').value?.trim();
+      if(!email){alert('Email requis');return;}
+      const user={name,email,phone};
+      localStorage.setItem('tt_user', JSON.stringify(user));
+      closeModal('signupModal');
+      hydrateUser();
+      // Créer le profil côté serveur
+      fetch('/api/me', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(user)}).then(()=>refreshBalance());
+    }
+    function hydrateUser(){
+      const user=JSON.parse(localStorage.getItem('tt_user')||'null');
+      document.getElementById('balanceBadge').style.display = user? 'inline-flex':'none';
+    }
+
+    // --- Solde ---
+    async function refreshBalance(){
+      const user=JSON.parse(localStorage.getItem('tt_user')||'null');
+      if(!user) return;
+      const res = await fetch('/api/me?email='+encodeURIComponent(user.email));
+      const data = await res.json();
+      document.getElementById('balanceAmount').textContent = (data?.balance??0).toLocaleString('fr-FR') + ' FCFA';
+    }
+
+    function openTopupModal(){
+      const user=JSON.parse(localStorage.getItem('tt_user')||'null');
+      if(!user){openModal('signupModal');return;}
+      openModal('topupModal');
+    }
+
+    async function requestTopup(){
+      const user=JSON.parse(localStorage.getItem('tt_user')||'null');
+      if(!user){openModal('signupModal');return;}
+      const amount=Number(document.getElementById('topupAmount').value||0);
+      const res = await fetch('/api/topup', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ email:user.email, amount })});
+      const data = await res.json();
+      if(data?.paymentUrl){ window.location.href=data.paymentUrl; } else { alert(data?.error||'Erreur paiement'); }
+    }
+
+    // --- Commande ---
+    async function submitOrder(e){
+      e.preventDefault();
+      const user=JSON.parse(localStorage.getItem('tt_user')||'null');
+      if(!user){openModal('signupModal');return false;}
+      const platform = document.getElementById('platform').value;
+      const service = getSelectedService()?.name || '';
+      const link = document.getElementById('link').value;
+      const quantity = Number(document.getElementById('quantity').value || 0);
+
+      const res = await fetch('/api/order', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ email:user.email, platform, service, link, quantity })});
+      const data = await res.json();
+      if(data?.ok){ alert('Commande validée ✅'); refreshBalance(); }
+      else{ alert(data?.error||'Solde insuffisant'); }
+      return false;
+    }
+
+    function orderWhatsApp(){
+      const platform=document.getElementById('platform').value;
+      const service=getSelectedService();
+      const link=document.getElementById('link').value||'';
+      const qty=document.getElementById('quantity').value||'';
+      const price=document.getElementById('price').value||'';
+      const txt = `Bonjour TTbooster,%0AJe souhaite commander :%0A• Plateforme: ${platform}%0A• Service: ${service?service.name:''}%0A• Lien: ${encodeURIComponent(link)}%0A• Quantité: ${qty}%0A• Prix estimé: ${price}%0A• Ciblage: CMR%0AMerci !`;
+      window.open(`https://wa.me/237682022279?text=${txt}`,'_blank');
+    }
+
+    syncServices();
+  </script>
+  <!-- Payment Modal -->
+  <div id="payModal" class="fixed inset-0 hidden items-center justify-center bg-black/40 p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 space-y-3 shadow-soft">
+      <div class="flex items-center justify-between">
+        <h4 class="font-bold text-lg">Paiement — TTbooster</h4>
+        <button onclick="closeModal('payModal')" class="text-slate-500">✕</button>
+      </div>
+      <div class="text-sm text-slate-600 space-y-2">
+        <p><span class="font-semibold">MTN MoMo (CMR):</span> Ouvrez MoMo, envoyez le montant indiqué, puis transmettez le reçu sur WhatsApp.</p>
+        <p><span class="font-semibold">Orange Money (CMR):</span> Même procédé, joignez le reçu sur WhatsApp.</p>
+        <p><span class="font-semibold">Carte bancaire:</span> Demandez un lien de paiement sécurisé sur WhatsApp.</p>
+      </div>
+      <button class="w-full px-4 py-3 rounded-lg text-white brand-grad" onclick="orderWhatsApp()">Continuer sur WhatsApp</button>
+    </div>
+  </div>
+
+</body>
+</html>
